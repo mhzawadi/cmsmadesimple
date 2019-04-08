@@ -20,7 +20,7 @@ RUN docker-php-ext-configure zip --with-libzip && \
       mysqli \
       gd \
       opcache; \
-    a2enmod rewrite \
+    a2enmod rewrite; \
     chown -R www-data.www-data .
 
 EXPOSE 80
