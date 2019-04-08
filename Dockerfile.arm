@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM arm32v7/php:7.2-apache
 
 ENV CMSMS_VERSION 2.2.10
 ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14356/cmsms-2.2.10-install.zip'
