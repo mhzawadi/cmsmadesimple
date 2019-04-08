@@ -7,9 +7,8 @@ WORKDIR /var/www/html
 
 RUN apt-get update && \
     apt-get -y install curl zip libzip-dev libgd-dev && \
-    apt-get clean
-
-RUN curl -LO ${CMSMS_URL} && \
+    apt-get clean;
+    curl -LO ${CMSMS_URL} && \
     unzip cmsms-${CMSMS_VERSION}-install.zip && \
     rm -r cmsms-${CMSMS_VERSION}-install.zip
 
@@ -20,10 +19,8 @@ RUN docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install -j$(nproc) \
       mysqli \
       gd \
-      opcache
-
-RUN a2enmod rewrite
-
-RUN chown -R www-data.www-data .
+      opcache; \
+    a2enmod rewrite \
+    chown -R www-data.www-data .
 
 EXPOSE 80
