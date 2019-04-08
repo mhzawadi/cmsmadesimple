@@ -7,7 +7,7 @@ WORKDIR /var/www/html
 
 RUN apt-get update && \
     apt-get -y install curl zip libzip-dev libgd-dev && \
-    apt-get clean;
+    apt-get clean; \
     curl -LO ${CMSMS_URL} && \
     unzip cmsms-${CMSMS_VERSION}-install.zip && \
     rm -r cmsms-${CMSMS_VERSION}-install.zip
