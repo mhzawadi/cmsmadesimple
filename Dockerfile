@@ -13,7 +13,7 @@ RUN apt-get update && \
     rm -r cmsms-${CMSMS_VERSION}-install.zip
 
 COPY limits.ini $PHP_INI_DIR/conf.d/
-
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install -j$(nproc) zip; \
     docker-php-ext-install -j$(nproc) \
