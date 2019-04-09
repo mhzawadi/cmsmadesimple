@@ -1,5 +1,5 @@
-ARG MH_ARCH
-FROM ${MH_ARCH:''}php:7.2-apache
+ENV MH_ARCH
+FROM ${MH_ARCH}
 MAINTAINER Matthew Horwood <matt@horwood.biz>
 
 ENV CMSMS_VERSION 2.2.10
