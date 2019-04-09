@@ -4,14 +4,14 @@ FROM ${MH_ARCH}:${MH_TAG}
 MAINTAINER Matthew Horwood <matt@horwood.biz>
 
 ENV CMSMS_VERSION 2.2.10
-ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14357/cmsms-2.2.10-install.zip'
+ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14356/cmsms-2.2.10-install.zip'
 
 WORKDIR /var/www/html
 
 RUN apt-get update && \
-    apt-get -y install curl zip libzip-dev libgd-dev && \
+    apt-get -y install wget curl zip libzip-dev libgd-dev && \
     apt-get clean; \
-    curl -LO ${CMSMS_URL} && \
+    wget ${CMSMS_URL} && \
     unzip cmsms-${CMSMS_VERSION}-install.zip && \
     rm -r cmsms-${CMSMS_VERSION}-install.zip
 
