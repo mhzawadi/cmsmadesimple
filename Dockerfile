@@ -1,5 +1,6 @@
-ENV MH_ARCH
-FROM ${MH_ARCH}
+ARG MH_ARCH
+ARG MH_TAG
+FROM ${MH_ARCH}:${MH_TAG}
 MAINTAINER Matthew Horwood <matt@horwood.biz>
 
 ENV CMSMS_VERSION 2.2.10

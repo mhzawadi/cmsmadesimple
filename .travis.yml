@@ -20,7 +20,7 @@ script:
   - docker pull $SOURCE_IMAGE:$SOURCE_IMAGE_TAG && export IMAGE_CACHE="--cache-from $SOURCE_IMAGE:$SOURCE_IMAGE_TAG" || export IMAGE_CACHE=""
 
   # build the image, login and push
-  - docker build -f $DOCKERFILE $SOURCE_IMAGE --build-arg MH_ARCH=$MH_ARCH --build-arg -t $TARGET_IMAGE:$TARGET_IMAGE_TAG .
+  - docker build -f "$DOCKERFILE" $IMAGE_CACHE --build-arg MH_ARCH=$SOURCE_IMAGE --build-arg MH_TAG=$SOURCE_IMAGE_TAG" -t "$TARGET_IMAGE:$TARGET_IMAGE_TAG" .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push $TARGET_IMAGE:$TARGET_IMAGE_TAG
 
