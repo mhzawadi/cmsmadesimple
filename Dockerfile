@@ -4,7 +4,7 @@ FROM ${MH_ARCH}:${MH_TAG}
 MAINTAINER Matthew Horwood <matt@horwood.biz>
 
 ENV CMSMS_VERSION 2.2.10
-ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14357/cmsms-${CMSMS_VERSION}-install.zip'
+ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14357/cmsms-2.2.10-install.zip'
 
 WORKDIR /var/www/html
 
