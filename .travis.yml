@@ -6,8 +6,6 @@ services:
 env:
   - SOURCE_IMAGE="php" DOCKERFILE="Dockerfile" TAG_SUFFIX="amd64"
 
-#  - SOURCE_IMAGE="arm32v7/php" DOCKERFILE="Dockerfile" TAG_SUFFIX="arm32v7" ALT_SUFFIX="raspberry-pi"
-
 script:
   # setup multi-arch build support
   - sudo apt-get --yes --no-install-recommends install binfmt-support qemu-user-static
