@@ -1,8 +1,11 @@
+
+# cmsms-docker
+
 .. image:: https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master
    :target: https://travis-ci.com/mhzawadi/cmsms-docker
    :alt: Travis Status
 
-# cmsms-docker
+
 CMS Made Simple docker build
 
 Docker image for CMS Made Simple, an Open Source Content Management System built using PHP and the Smarty Engine, which keeps content, functionality, and templates separated (<https://www.cmsmadesimple.org>).
