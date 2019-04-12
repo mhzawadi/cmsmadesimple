@@ -1,9 +1,7 @@
 
 # cmsms-docker
 
-.. image:: https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master
-   :target: https://travis-ci.com/mhzawadi/cmsms-docker
-   :alt: Travis Status
+[![Travis](https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master)](https://travis-ci.org/mhzawadi/cmsms-docker)
 
 
 CMS Made Simple docker build
