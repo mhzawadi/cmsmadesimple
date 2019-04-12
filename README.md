@@ -1,3 +1,5 @@
+[travis]: https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master
+
 # cmsms-docker
 CMS Made Simple docker build
 
