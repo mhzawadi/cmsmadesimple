@@ -58,9 +58,3 @@ jobs:
         - export TAG_PREFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo ""; else echo "$TRAVIS_BRANCH-"; fi)
         - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}amd64
         - docker manifest push $TARGET_IMAGE:$MANIFEST_SUFFIX
-
-        # debian
-        - export MANIFEST_SUFFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "debian"; else echo "$TRAVIS_BRANCH-debian"; fi)
-        - export TAG_PREFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "debian"; else echo "$TRAVIS_BRANCH-debian"; fi)
-        - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}-amd64
-        - docker manifest push $TARGET_IMAGE:$MANIFEST_SUFFIX
