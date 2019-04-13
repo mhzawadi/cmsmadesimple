@@ -36,13 +36,13 @@ jobs:
           fi
 
         # enable experimental to use docker manifest command
-        - if [ ! -d $HOME/.docker ]; then
+        - if [ -d "$HOME/.docker" ]; then
+            echo "we have config"
+          else
             mkdir $HOME/.docker
+            echo '{"experimental": "enabled"}' | tee $HOME/.docker/config.json
+            echo '{"experimental": true,"storage-driver": "overlay2","max-concurrent-downloads": 50,"max-concurrent-uploads": 50}' | sudo tee /etc/docker/daemon.json
           fi
-        - |-
-          echo '{"experimental": "enabled"}' | tee $HOME/.docker/config.json
-        - |-
-          echo '{"experimental": true,"storage-driver": "overlay2","max-concurrent-downloads": 50,"max-concurrent-uploads": 50}' | sudo tee /etc/docker/daemon.json
         - sudo service docker restart
 
         # login
