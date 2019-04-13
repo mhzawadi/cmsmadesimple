@@ -36,7 +36,9 @@ jobs:
           fi
 
         # enable experimental to use docker manifest command
-        - mkdir $HOME/.docker
+        - if [ ! -d $HOME/.docker ]; then
+            mkdir $HOME/.docker
+          fi
         - |-
           echo '{"experimental": "enabled"}' | tee $HOME/.docker/config.json
         - |-
