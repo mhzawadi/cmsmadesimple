@@ -5,11 +5,11 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
-chown -R www-data:www-data tmp/templates_c
-chown -R www-data:www-data tmp/cache
-chown -R www-data:www-data uploads
-chown -R www-data:www-data uploads/images
-chown -R www-data:www-data modules
+# chown -R www-data:www-data tmp/templates_c
+# chown -R www-data:www-data tmp/cache
+# chown -R www-data:www-data uploads
+# chown -R www-data:www-data uploads/images
+# chown -R www-data:www-data modules
 
 cp /config.template.php /var/www/html/config.php
 chown -R www-data:www-data /var/www/html/config.php
