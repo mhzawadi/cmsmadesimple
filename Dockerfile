@@ -3,8 +3,8 @@ ARG MH_TAG
 FROM ${MH_ARCH}:${MH_TAG}
 MAINTAINER Matthew Horwood <matt@horwood.biz>
 
-ENV CMSMS_VERSION 2.2.10
-ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14356/cmsms-2.2.10-install.zip'
+ENV CMSMS_VERSION 2.2.9.1
+ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14316/cmsms-2.2.9.1-install.zip'
 
 WORKDIR /var/www/html
 
