@@ -11,12 +11,12 @@ cd /var/www/html
 # chown -R www-data:www-data uploads/images
 # chown -R www-data:www-data modules
 
-cp /config.template.php /var/www/html/config.php
-chown -R www-data:www-data /var/www/html/config.php
-sed -i -e "s/###MYSQL_HOST###/${MYSQL_HOST}/g" /var/www/html/config.php
-sed -i -e "s/###MYSQL_USER###/${MYSQL_USER}/g" /var/www/html/config.php
-sed -i -e "s/###MYSQL_PASSWORD###/${MYSQL_PASSWORD}/g" /var/www/html/config.php
-sed -i -e "s/###MYSQL_DATABASE###/${MYSQL_DATABASE}/g" /var/www/html/config.php
+# cp /config.template.php /var/www/html/config.php
+# chown -R www-data:www-data /var/www/html/config.php
+# sed -i -e "s/###MYSQL_HOST###/${MYSQL_HOST}/g" /var/www/html/config.php
+# sed -i -e "s/###MYSQL_USER###/${MYSQL_USER}/g" /var/www/html/config.php
+# sed -i -e "s/###MYSQL_PASSWORD###/${MYSQL_PASSWORD}/g" /var/www/html/config.php
+# sed -i -e "s/###MYSQL_DATABASE###/${MYSQL_DATABASE}/g" /var/www/html/config.php
 
 if [[ -n "${REMOVE_INSTALL_FOLDER}" ]]
 then
