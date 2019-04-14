@@ -4,23 +4,35 @@
 [![Travis](https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master)](https://travis-ci.org/mhzawadi/cmsms-docker)
 
 
-CMS Made Simple docker build
+This Docker Image provides cms made simple served by apache.
 
 Docker image for CMS Made Simple, an Open Source Content Management System built using PHP and the Smarty Engine, which keeps content, functionality, and templates separated (<https://www.cmsmadesimple.org>).
 
 ## How to use this image
 
-CMS Made Simple requires a MySQL DB as backend. You can launch a dockerized one with the following command (change paswords accordingly):
+For persisting uploaded data you should mount the volumes:
 
-    $ docker run --name mysqlcms -e MYSQL_ROOT_PASSWORD=<root_password> -e MYSQL_DATABASE=cmsmadesimpledb -e MYSQL_USER=cmsmadesimple -e MYSQL_PASSWORD=<user_password> -d mysql:5.7
+- /var/www/html/uploads
+- /var/www/html/modules
 
-This will start a CMS Made Simple instance listening on port 80:
+## docker-compose
 
-    $ docker run -d -p 80:80 --name cmsmadesimple --link mysqlcms:mysql mhzawadi/cmsms-docker
+```
+version: '3.5'
 
-If you'd like persistance, you can create a volume for that purpose:
+volumes:
+  cms_config:
+  cms_modules:
+  cms_uploads:
 
-    $ docker volume create cmsmadesimple_web
-    $ docker run -d -p 80:80 --name cmsmadesimple --link mysqlcms:mysql -v cmsmadesimple_web:/var/www/html mhzawadi/cmsms-docker
-
-Once the container is running for the first time, navigate to `/cmsms-2.2.8-install.php` to be redirected to the upgrade and install scripts.
+services:
+  cmsms:
+     image: mhzawadi/cmsms-docker:2.2.9-arm32v7
+     volumes:
+       - cms_config:/var/www/html/config.php
+       - cms_modules:/var/www/html/modules
+       - cms_uploads:/var/www/html/uploads
+     restart: always
+     environment:
+       - REMOVE_INSTALL_FOLDER=true
+```
