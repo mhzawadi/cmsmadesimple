@@ -5,23 +5,23 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
-if [ ! -d /var/www/config ]
+if [ ! -d /var/www/html/config ]
 then
-	mkdir /var/www/config
+	mkdir /var/www/html/config
 fi
-cp /config.template.php /var/www/config/config.php
-chown -R www-data:www-data /var/www/config/config.php
-ln -s config/config.php config.php
+cp /config.template.php /var/www/html/config/config.php
+chown -R www-data:www-data /var/www/html/config/config.php
+ln -s /var/www/html/config/config.php config.php
 
 if [[ -n "${REMOVE_INSTALL_FOLDER}" ]]
 then
 	echo "Removing install dir"
 	rm -rfv cmsms-${CMSMS_VERSION}-install.php
-	chmod 0640 /var/www/html/config.php
+	chmod 0640 /var/www/html/config/config.php
 else
 	echo "Making config.php writable"
 	touch /var/www/html/config.php
-	chmod 0666 /var/www/html/config.php
+	chmod 0666 /var/www/html/config/config.php
 fi
 
 exec apache2-foreground
