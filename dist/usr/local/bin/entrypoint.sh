@@ -5,8 +5,13 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
-cp /config.template.php /var/www/html/config.php
-chown -R www-data:www-data /var/www/html/config.php
+if [ ! -d /var/www/config ]
+then
+	mkdir /var/www/config
+fi
+cp /config.template.php /var/www/config/config.php
+chown -R www-data:www-data /var/www/config/config.php
+ln -s config/config.php config.php
 
 if [[ -n "${REMOVE_INSTALL_FOLDER}" ]]
 then
