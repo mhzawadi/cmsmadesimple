@@ -5,6 +5,7 @@ services:
 
 env:
   - SOURCE_IMAGE="php" DOCKERFILE="Dockerfile" AVAHI=1 TAG_SUFFIX="amd64"
+  - SOURCE_IMAGE="arm32v7/php" DOCKERFILE="Dockerfile" AVAHI=1 TAG_SUFFIX="amd64"
 
 script:
   # setup multi-arch build support
@@ -54,5 +55,6 @@ jobs:
         # main
         - export MANIFEST_SUFFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi)
         - export TAG_PREFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo ""; else echo "$TRAVIS_BRANCH-"; fi)
-        - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}amd64
+        - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}amd64 $TARGET_IMAGE:${TAG_PREFIX}arm32v6
+        - docker manifest annotate $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}arm32v7 --os=linux --arch=arm --variant=v7
         - docker manifest push $TARGET_IMAGE:$MANIFEST_SUFFIX
