@@ -5,7 +5,7 @@ services:
 
 env:
   - SOURCE_IMAGE="php" DOCKERFILE="Dockerfile" AVAHI=1 TAG_SUFFIX="amd64"
-  - SOURCE_IMAGE="arm32v7/php" DOCKERFILE="Dockerfile" AVAHI=1 TAG_SUFFIX="amd64"
+  - SOURCE_IMAGE="php" DOCKERFILE="Dockerfile" AVAHI=1 TAG_SUFFIX="debian-amd64"
 
 script:
   # setup multi-arch build support
