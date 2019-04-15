@@ -35,21 +35,22 @@ jobs:
             docker push $TARGET_IMAGE:$ALT_IMAGE_TAG;
           fi
 
-        # enable experimental to use docker manifest command
-        - if [ -d $HOME/.docker ]; then
-            echo "we have config thanks"
-          else
-            mkdir $HOME/.docker
-            echo '{"experimental": "enabled"}' | tee $HOME/.docker/config.json
-            echo '{"experimental": true,"storage-driver": "overlay2","max-concurrent-downloads": 50,"max-concurrent-uploads": 50}' | sudo tee /etc/docker/daemon.json
-          fi
-        - sudo service docker restart
-
-        # login
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-        # main
-        - export MANIFEST_SUFFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi)
-        - export TAG_PREFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo ""; else echo "$TRAVIS_BRANCH-"; fi)
-        - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}amd64
-        - docker manifest push $TARGET_IMAGE:$MANIFEST_SUFFIX
+        # # enable experimental to use docker manifest command
+        # - if [ -d "$HOME/.docker" ]; then
+        #     echo "we have config thanks";
+        #   else
+        #     mkdir $HOME/.docker;
+        #     echo '{"experimental": "enabled"}' > tee $HOME/.docker/config.json;
+        #     echo '{"experimental": true,"storage-driver": "overlay2","max-concurrent-downloads": 50,"max-concurrent-uploads": 50}' | sudo tee /etc/docker/daemon.json;
+        #   fi
+        #
+        # - sudo service docker restart
+        #
+        # # login
+        # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        #
+        # # main
+        # - export MANIFEST_SUFFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "latest"; else echo "$TRAVIS_BRANCH"; fi)
+        # - export TAG_PREFIX=$(if [ "$TRAVIS_BRANCH" = "master" ]; then echo ""; else echo "$TRAVIS_BRANCH-"; fi)
+        # - docker manifest create $TARGET_IMAGE:$MANIFEST_SUFFIX $TARGET_IMAGE:${TAG_PREFIX}amd64
+        # - docker manifest push $TARGET_IMAGE:$MANIFEST_SUFFIX
