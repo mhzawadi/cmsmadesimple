@@ -34,3 +34,5 @@ else
   docker tag $TARGET_IMAGE:$TARGET_IMAGE_TAG $TARGET_IMAGE:$ALT_IMAGE_TAG;
   docker push $TARGET_IMAGE:$ALT_IMAGE_TAG;
 fi
+
+/usr/bin/curl -s --form-string "token=$PUSHOVER_TOKEN" --form-string "user=$PUSHOVER_USER"  --form-string "title=Docker Build" --form-string "message=Docker build  for $TARGET_IMAGE_TAG is now complete" https://api.pushover.net/1/messages.json

@@ -9,11 +9,13 @@ ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14356/cmsms-2.2.10-instal
 WORKDIR /var/www/html
 
 RUN apt-get update && \
-    apt-get -y install wget curl zip libzip-dev libgd-dev && \
+    apt-get -y install wget curl zip libzip-dev libgd-dev rsync && \
     apt-get clean; \
+    cd /usr/src && \
     wget ${CMSMS_URL} && \
     unzip cmsms-${CMSMS_VERSION}-install.zip && \
-    rm -r cmsms-${CMSMS_VERSION}-install.zip
+    rm -r cmsms-${CMSMS_VERSION}-install.zip && \
+    cd /var/www/html
 
 COPY dist /
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
@@ -26,5 +28,7 @@ RUN docker-php-ext-configure zip --with-libzip && \
     a2enmod rewrite; \
     chown -R www-data.www-data .
 
+VOLUME /var/www/html
 EXPOSE 80
 ENTRYPOINT ["entrypoint.sh"]
+CMD ["apache2-foreground"]
