@@ -5,7 +5,7 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
-if [ -f "/var/www/html/cmsms-${CMSMS_VERSION}-install.php" ]
+if [ -f "cmsms-${CMSMS_VERSION}-install.php" ]
 then
 	echo "have the file ta"
 else

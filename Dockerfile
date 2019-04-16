@@ -9,7 +9,7 @@ ENV CMSMS_URL 'http://s3.amazonaws.com/cmsms/downloads/14356/cmsms-2.2.10-instal
 WORKDIR /var/www/html
 
 RUN apt-get update && \
-    apt-get -y install wget curl zip libzip-dev libgd-dev && \
+    apt-get -y install wget curl zip libzip-dev libgd-dev rsync && \
     apt-get clean; \
     cd /usr/src && \
     wget ${CMSMS_URL} && \
