@@ -14,7 +14,7 @@ else
 	else
 		rsync_options=""
 	fi
-	rsync $rsync_options --delete /usr/src/cmsms-${CMSMS_VERSION}-install.php /var/www/html/
+	rsync $rsync_options /usr/src/cmsms-${CMSMS_VERSION}-install.php /var/www/html/
 fi
 
 cp /config.template.php /var/www/html/config.php
