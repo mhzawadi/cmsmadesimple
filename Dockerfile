@@ -14,7 +14,7 @@ RUN apt-get update && \
     cd /usr/src && \
     wget ${CMSMS_URL} && \
     unzip cmsms-${CMSMS_VERSION}-install.zip && \
-    rm -r cmsms-${CMSMS_VERSION}-install.zip &&
+    rm -r cmsms-${CMSMS_VERSION}-install.zip && \
     cd /var/www/html
 
 COPY dist /
