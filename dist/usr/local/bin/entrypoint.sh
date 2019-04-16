@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -e
+#!/bin/bash
+set -eu
 
 cd /var/www/html
 
@@ -34,3 +34,5 @@ else
 	chown -R www-data:www-data /var/www/html/config.php
 	chmod 0666 /var/www/html/config.php
 fi
+
+exec "$@"
