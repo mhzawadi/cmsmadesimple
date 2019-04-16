@@ -5,8 +5,10 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
-if [ ! -f "/var/www/htmlcmsms-${CMSMS_VERSION}-install.php" ]
+if [ -f "/var/www/html/cmsms-${CMSMS_VERSION}-install.php" ]
 then
+	echo "have the file ta"
+else
 	wget ${CMSMS_URL} && \
 	unzip cmsms-${CMSMS_VERSION}-install.zip && \
 	rm -r cmsms-${CMSMS_VERSION}-install.zip
