@@ -5,6 +5,13 @@ cd /var/www/html
 
 . docker-php-entrypoint
 
+if [ ! -f "/var/www/htmlcmsms-${CMSMS_VERSION}-install.php" ]
+then
+	wget ${CMSMS_URL} && \
+	unzip cmsms-${CMSMS_VERSION}-install.zip && \
+	rm -r cmsms-${CMSMS_VERSION}-install.zip
+fi
+
 cp /config.template.php /var/www/html/config.php
 chown -R www-data:www-data /var/www/html/config.php
 sed -i -e "s/###MYSQL_HOST###/${MYSQL_HOST}/g" /var/www/html/config.php
