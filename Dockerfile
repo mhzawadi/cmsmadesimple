@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 RUN apt-get update && \
     apt-get -y install wget curl zip libzip-dev libgd-dev && \
     apt-get clean; \
-    wget -O /usr/src/${CMSMS_URL} && \
+    wget -O /usr/src/cmsms-${CMSMS_VERSION}-install.zip ${CMSMS_URL} && \
     unzip /usr/src/cmsms-${CMSMS_VERSION}-install.zip && \
     rm -r /usr/src/cmsms-${CMSMS_VERSION}-install.zip
 
