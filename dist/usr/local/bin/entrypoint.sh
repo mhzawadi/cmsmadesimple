@@ -17,16 +17,10 @@ fi
 
 cp /config.template.php /var/www/html/config.php
 chown -R www-data:www-data /var/www/html/config.php
-if [ -n "${MYSQL_HOST}" ]; then
+if [ -n "${MYSQL_HOST+x}" ] && [ -n "${MYSQL_USER+x}" ] && [ -n "${MYSQL_PASSWORD+x}" ] && [ -n "${MYSQL_DATABASE}" ]; then
 	sed -i -e "s/###MYSQL_HOST###/${MYSQL_HOST}/g" /var/www/html/config.php
-fi
-if [ -n "${MYSQL_USER}" ]; then
 	sed -i -e "s/###MYSQL_USER###/${MYSQL_USER}/g" /var/www/html/config.php
-fi
-if [ -n "${MYSQL_PASSWORD}" ]; then
 	sed -i -e "s/###MYSQL_PASSWORD###/${MYSQL_PASSWORD}/g" /var/www/html/config.php
-fi
-if [ -n "${MYSQL_DATABASE}" ]; then
 	sed -i -e "s/###MYSQL_DATABASE###/${MYSQL_DATABASE}/g" /var/www/html/config.php
 fi
 
@@ -43,4 +37,4 @@ else
 	chmod 0666 /var/www/html/config.php
 fi
 
-. docker-php-entrypoint
+exec "$@"
