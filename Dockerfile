@@ -11,9 +11,9 @@ WORKDIR /var/www/html
 RUN apt-get update && \
     apt-get -y install wget curl zip libzip-dev libgd-dev && \
     apt-get clean; \
-    wget ${CMSMS_URL} && \
-    unzip cmsms-${CMSMS_VERSION}-install.zip && \
-    rm -r cmsms-${CMSMS_VERSION}-install.zip
+    wget -O /usr/src/${CMSMS_URL} && \
+    unzip /usr/src/cmsms-${CMSMS_VERSION}-install.zip && \
+    rm -r /usr/src/cmsms-${CMSMS_VERSION}-install.zip
 
 COPY dist /
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"

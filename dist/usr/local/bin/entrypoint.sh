@@ -9,9 +9,12 @@ if [ -f "/var/www/html/cmsms-${CMSMS_VERSION}-install.php" ]
 then
 	echo "have the file ta"
 else
-	wget ${CMSMS_URL} && \
-	unzip cmsms-${CMSMS_VERSION}-install.zip && \
-	rm -r cmsms-${CMSMS_VERSION}-install.zip
+	if [ "$(id -u)" = 0 ]; then
+		rsync_options="--chown www-data:root"
+	else
+		rsync_options=""
+	fi
+	rsync $rsync_options --delete /usr/src/cmsms-${CMSMS_VERSION}-install.php /var/www/html/
 fi
 
 cp /config.template.php /var/www/html/config.php
