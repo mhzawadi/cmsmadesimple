@@ -1,7 +1,4 @@
-cmsms-docker
-# cmsms-docker
-
-[![Travis](https://travis-ci.com/mhzawadi/cmsms-docker.svg?branch=master)](https://travis-ci.org/mhzawadi/cmsms-docker)
+# cmsms-docker  [![Travis](https://img.shields.io/travis/com/mhzawadi/cmsms-docker/master.svg?label=amd64%20build)](https://travis-ci.org/mhzawadi/cmsms-docker) [![Travis](https://img.shields.io/travis/com/mhzawadi/cmsms-docker/2.2.10.svg?label=2.2.10amd64%20build)](https://travis-ci.org/mhzawadi/cmsms-docker)
 
 
 This Docker Image provides cms made simple served by apache.
