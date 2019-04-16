@@ -24,7 +24,7 @@ if [ -n "${MYSQL_HOST+x}" ] && [ -n "${MYSQL_USER+x}" ] && [ -n "${MYSQL_PASSWOR
 	sed -i -e "s/###MYSQL_DATABASE###/${MYSQL_DATABASE}/g" /var/www/html/config.php
 fi
 
-if [[ -n "${REMOVE_INSTALL_FOLDER}" ]]
+if [[ -n "${REMOVE_INSTALL_FOLDER+x}" ]]
 then
 	echo "Removing install dir"
 	rm -rfv cmsms-${CMSMS_VERSION}-install.php

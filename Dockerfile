@@ -31,4 +31,4 @@ RUN docker-php-ext-configure zip --with-libzip && \
 VOLUME /var/www/html
 EXPOSE 80
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["%%CMD%%"]
+CMD ["apache2-foreground"]
