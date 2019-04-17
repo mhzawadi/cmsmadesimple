@@ -34,25 +34,21 @@ $ docker run -d \
 mariadb
 ```
 
-If you want to get fine grained access to your individual files, you can mount additional volumes for data, config, your theme and custom apps.
-The `data`, `config` are stored in respective subfolders inside `/var/www/html/`. The apps are split into core `apps` (which are shipped with CMS Made Simple and you don't need to take care of) and a `custom_apps` folder. If you use a custom theme it would go into the `themes` subfolder.
+If you want to get fine grained access to your individual files, you can mount additional volumes for content and modules.
 
 Overview of the folders that can be mounted as volumes:
 
 - `/var/www/html` Main folder, needed for updating
-- `/var/www/html/custom_apps` installed / modified apps
-- `/var/www/html/config` local configuration
-- `/var/www/html/data` the actual data of your CMS Made Simple
-- `/var/www/html/themes/<YOUR_CUSTOM_THEME>` theming/branding
+- `/var/www/html/modules` installed / modified modules
+- `/var/www/html/uploads` all your content
+
 
 If you want to use named volumes for all of these it would look like this
 ```console
 $ docker run -d \
 -v cmsms:/var/www/html \
--v apps:/var/www/html/custom_apps \
--v config:/var/www/html/config \
--v data:/var/www/html/data \
--v theme:/var/www/html/themes/<YOUR_CUSTOM_THEME> \
+-v cms_modules:/var/www/html/modules \
+-v cms_uploads:/var/www/html/uploads \
 cmsms-docekr
 ```
 
@@ -68,7 +64,7 @@ __MYSQL/MariaDB__:
 ## Running this image with docker-compose
 The easiest way to get a fully featured and functional setup is using a docker-compose file. There are too many different possibilities to setup your system, so here is an examples what you have to look for.
 
-At first make sure you have chosen the right image (arm32v7 or amd64) and added the features you wanted (see below). In every case you want to add a database container and docker volumes to get easy access to your persistent data. When you want to have your server reachable from the internet adding HTTPS-encryption is mandatory! See below for more information.
+At first make sure you have chosen the right image (arm32v7 or amd64) and added the features you wanted (see below). In every case you want to add a database container and docker volumes to get easy access to your persistent data. See below for more information.
 
 ```
 version: '3.5'
@@ -101,10 +97,10 @@ db:
 ```
 
 # First use
-When you first access your CMS Made Simple, the setup wizard will appear and ask you to choose an administrator account, password and the database connection. For the database use `db` as host and `cmsms-docker` as table and user name. Also enter the password you chose in your `docker-compose.yml` file.
+You will need to run the setup wizard located at `http://server/cmsms-<version>-install.php`, once you have run the setup wizard you should see your site.
 
 # Update to a newer version
-Updating the CMS Made Simple container is done by pulling the new image, throwing away the old container and starting the new one. Since all data is stored in volumes, nothing gets lost. The startup script will check for the version in your volume and the installed docker version. If it finds a mismatch, it automatically starts the upgrade process. Don't forget to add all the volumes to your new container, so it works as expected.
+Updating the CMS Made Simple container is done by pulling the new image, throwing away the old container and starting the new one. Since all data is stored in volumes, nothing gets lost. You will then need to navigate to the setup wizard for the new version to complete the update process.
 
 ```console
 $ docker pull cmsms-docker
@@ -119,4 +115,21 @@ When using docker-compose your compose file takes care of your configuration, so
 ```console
 $ docker-compose pull
 $ docker-compose up -d
+```
+
+# Custom builds
+If you want to fork this and run a custom build, you can use the build.sh file included.
+You will need to store the below in ~/.docker_build, if you provide a pushover token and username you can get alerts once the build has finished.
+
+```
+DOCKER_USERNAME=''
+DOCKER_PASSWORD=''
+PUSHOVER_USER=''
+PUSHOVER_TOKEN=''
+SOURCE_IMAGE=''
+SOURCE_IMAGE_TAG=''
+TARGET_IMAGE=''
+DOCKERFILE=''
+TAG_SUFFIX=''
+ALT_SUFFIX=''
 ```
