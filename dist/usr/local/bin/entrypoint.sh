@@ -17,7 +17,7 @@ fi
 
 cp /config.template.php /var/www/html/config.php
 chown -R www-data:www-data /var/www/html/config.php
-if [ -n "${MYSQL_HOST+x}" ] && [ -n "${MYSQL_USER+x}" ] && [ -n "${MYSQL_PASSWORD+x}" ] && [ -n "${MYSQL_DATABASE}" ]; then
+if [ -n "${MYSQL_HOST+x}" ] && [ -n "${MYSQL_USER+x}" ] && [ -n "${MYSQL_PASSWORD+x}" ] && [ -n "${MYSQL_DATABASE+x}" ]; then
 	sed -i -e "s/###MYSQL_HOST###/${MYSQL_HOST}/g" /var/www/html/config.php
 	sed -i -e "s/###MYSQL_USER###/${MYSQL_USER}/g" /var/www/html/config.php
 	sed -i -e "s/###MYSQL_PASSWORD###/${MYSQL_PASSWORD}/g" /var/www/html/config.php
@@ -28,12 +28,12 @@ if [[ -n "${REMOVE_INSTALL_FOLDER+x}" ]]
 then
 	echo "Removing install dir"
 	rm -rfv cmsms-${CMSMS_VERSION}-install.php
-	chown -R www-data:www-data /var/www/html/config.php
+	chown -R www-data:www-data /var/www/html/*
 	chmod 0640 /var/www/html/config.php
 else
-	echo "Making config.php writable"
+	echo " Making config.php writable"
 	touch /var/www/html/config.php
-	chown -R www-data:www-data /var/www/html/config.php
+	chown -R www-data:www-data /var/www/html/uploads
 	chmod 0666 /var/www/html/config.php
 fi
 
