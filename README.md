@@ -1,4 +1,4 @@
-# cmsms-docker  ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/mhzawadi/cmsmadesimple.svg?label=amd64)
+# cmsms-docker  ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/mhzawadi/cmsmadesimple.svg?label=amd64) ![Docker Pulls](https://img.shields.io/docker/pulls/mhzawadi/cmsmadesimple.svg)
 
 
 This Docker Image provides cms made simple served by apache.
